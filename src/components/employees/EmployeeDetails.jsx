@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Table } from "reactstrap";
-import { getCustomer } from "../../data/customerInformationData";
+import { getEmployee } from "../../data/employeeInformationData";
 
-export default function CustomerDetails() {
+export default function EmployeeDetails() {
   const { id } = useParams();
 
-  const [customer, setCustomer] = useState(null);
+  const [employee, setEmployee] = useState(null);
 
   //add useEffect here to get the ticket details from the API
   useEffect(() => {
     console.warn(id);
-    getCustomer(id).then(setCustomer);
+    getEmployee(id).then(setEmployee);
   }, [id])
 
-  if (!customer) {
+  if (!employee) {
     return null;
   }
 
@@ -22,12 +22,12 @@ export default function CustomerDetails() {
     <Table>
       <tbody>
         <tr>
-          <th scope="row">Customer</th>
-          <td>{customer.name}</td>
+          <th scope="row">Employee</th>
+          <td>{employee.name}</td>
         </tr>
         <tr>
-          <th scope="row">Address</th>
-          <td>{customer.address}</td>
+          <th scope="row">Specialty</th>
+          <td>{employee.specialty}</td>
         </tr>
       </tbody>
     </Table>
