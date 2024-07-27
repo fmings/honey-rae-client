@@ -5,3 +5,15 @@ export const getServiceTickets = () => {
 };
 
 //export a function here that gets a ticket by id
+
+export const getServiceTicket = (id) => new Promise((resolve, reject) => {
+  fetch(`/api/servicetickets/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve((data)))
+    .catch(reject);
+})
