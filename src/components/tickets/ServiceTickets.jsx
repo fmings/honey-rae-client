@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { Button } from "reactstrap";
+import { getServiceTickets } from "../../data/serviceTicketsData";
 
 export default function ServiceTickets() {
   return (
