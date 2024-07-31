@@ -42,3 +42,15 @@ export const deleteServiceTicket = (id) => new Promise((resolve, reject) => {
     .then((data) => resolve(data))
     .catch(reject);
 })
+
+export const completeServiceTicket = (id) => new Promise((resolve, reject) => {
+  fetch(`/api/servicetickets/${id}/complete`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.text())
+    .then((data) => resolve(data))
+    .catch(reject);
+})
