@@ -11,7 +11,6 @@ export default function TicketDetails() {
 
   //add useEffect here to get the ticket details from the API
   useEffect(() => {
-    console.warn(id);
     getServiceTicket(id).then(setTicket);
   }, [id])
 
