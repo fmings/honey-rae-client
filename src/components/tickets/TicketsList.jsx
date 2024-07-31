@@ -1,13 +1,27 @@
 import { useEffect, useState } from "react";
-import { Table } from "reactstrap";
-import { getServiceTickets } from "../../data/serviceTicketsData";
+import { Button, Table } from "reactstrap";
+import { deleteServiceTicket, getServiceTickets } from "../../data/serviceTicketsData";
 import { Link } from "react-router-dom";
 
 export default function TicketsList() {
   const [tickets, setTickets] = useState([]);
 
+  const deleteThisServiceTicket = (id) => {
+    if(window.confirm('Are you sure you want to delete this ticket?')) {
+      deleteServiceTicket(id).then(() => { 
+        setTickets(prevTickets => {
+          return prevTickets.filter(ticket => ticket.id !==id);
+    });
+    })
+  }
+};
+
+  const getAllServiceTickets = () => {
+    getServiceTickets().then(setTickets)
+  };
+
   useEffect(() => {
-    getServiceTickets().then(setTickets);
+    getAllServiceTickets();
   }, []);
 
   return (
@@ -31,8 +45,12 @@ export default function TicketsList() {
             <td>
               <Link to={`${t.id}`}>Details</Link>
             </td>
+            <td>
+            <Button className="button" variant="danger" onClick={() => deleteThisServiceTicket(t.id)}>Delete</Button>
+            </td>
           </tr>
         ))}
+        
       </tbody>
     </Table>
   );
