@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Table } from "reactstrap";
+import { Link, useParams } from "react-router-dom";
+import { Button, Table } from "reactstrap";
 import { getServiceTicket } from "../../data/serviceTicketsData";
 //import { getServiceTicket } from "../../data/serviceTicketsData";
 
@@ -35,7 +35,7 @@ export default function TicketDetails() {
         </tr>
         <tr>
           <th scope="row">Employee</th>
-          <td>{ticket.employee?.name || "Unassigned"}</td>
+          <td>{ticket.employee?.name ||<Link to={`/tickets/${id}/assign`}><Button className="button" variant="danger" >Assign</Button> </Link> }</td>
         </tr>
         <tr>
           <th scope="row">Completed?</th>

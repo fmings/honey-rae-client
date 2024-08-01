@@ -54,3 +54,16 @@ export const completeServiceTicket = (id) => new Promise((resolve, reject) => {
     .then((data) => resolve(data))
     .catch(reject);
 })
+
+export const assignServiceTicket = (id, payload) => new Promise((resolve, reject) => {
+  fetch(`/api/servicetickets/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.text())
+    .then((data) => resolve(data))
+    .catch(reject)
+})
